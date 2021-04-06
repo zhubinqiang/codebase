@@ -127,3 +127,24 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+## Mac
+.DS_Store
+*/.DS_Store
+.AppleDouble
+.LSOverride
+
+## vim
+*.swp
+
+## java
+*.class
+
+## C/C++
+*.o
+*.ko
+*.obj
+*.elf
+
+## log
+*.log
