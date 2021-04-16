@@ -142,6 +142,26 @@ case_statement() {
     esac
 }
 
+getopts_case() {
+    ## a: cmd -a XXX
+    ## hv cmd -h -v
+    while getopts "a:hv" opt; do
+        case $opt in
+            a          )  echo "-a: $OPTARG"   ;;
+            h|help     )  echo "Usage"; exit 0   ;;
+            v|version  )  echo "$0 -- Version 1.0"; exit 0   ;;
+
+            * )  echo -e "\n  Option does not exist : $OPTARG\n"
+                usage; exit 1   ;;
+        esac
+    done
+
+    echo ${OPTIND}
+    shift $(($OPTIND-1))
+    echo $0
+    echo $*
+}
+
 for_statement() {
     for i in a b c d; do
         echo ${i}
@@ -252,10 +272,116 @@ fun_show() {
     fun 1 2 3 '4 5' 6 7 8
 }
 
+background_wait() {
+    sleep 5 &
+    local pid=$!
+    echo "sleeping ..."
+    wait ${pid}
+    echo "wake up"
+}
+
 string() {
     local s="12345"
+    echo "s: ${s}"
 
     echo "length: ${#s}"
+    echo '${s:1:3}': "${s:1:3}"
+
+
+    local f="abc.tar.gz"
+    echo "f: ${f}"
+
+    ## Remove matching prefix pattern
+    echo '${f#*.}': "${f#*.}"
+    echo '${f##*.}': "${f##*.}"
+
+    ## Remove matching suffix pattern
+    echo '${f%.*}': "${f%.*}"
+    echo '${f%%.*}': "${f%%.*}"
+
+
+    ## substitute
+    local t="1:2:3:4:5"
+    echo "t: ${t}"
+
+    echo '${t/:/;}': "${t/:/;}"
+    echo '${t//:/;}': "${t//:/;}"
+
+    ## prefix
+    echo '${t/#1:2:/_}': "${t/#1:2:/_}"
+
+    ## suffix
+    echo '${t/%4:5/_}': "${t/%4:5/_}"
+
+    local s1="ONE,TWO,THREE,FOUR,FIVE"
+    echo 's1': "${s1}"
+    local array_s1=(${s1//,/ })
+    echo '(${s1//,/ })': "${array_s1[@]}"
+
+    ## True if the length of string is zero
+    [[ -z ${s} ]]
+
+    ## True if the length of string is non-zero
+    [[ -n ${s} ]]
+
+    ## set default string
+    ## ${s:-"xxx"}
+    local A=123
+    echo "A: ${A}"
+    echo '${A:-"AAAAA"}': ${A:-"AAAAA"}
+    local B=
+    echo "B: ${B}"
+    echo '${B:-"BBBBB"}': ${B:-"BBBBB"}
+
+    ## ${s:+"xxx"}
+    local C=123
+    echo "C: ${C}"
+    echo '${C:+"CCCCC"}': ${C:+"CCCCC"}
+    local D=
+    echo "D: ${D}"
+    echo '${D:+"DDDDD"}': ${D:+"DDDDD"}
+
+    ## mulit-string
+    echo "<HTML>
+    <HEAD>
+          <TITLE>Page Title</TITLE>
+    </HEAD>
+    <BODY>
+          Page body.
+    </BODY>
+</HTML>"
+
+    local files=$(
+cat << EOF
+/proc/buddyinfo
+/proc/cpuinfo
+/proc/meminfo
+/proc/pagetypeinfo
+/proc/slabinfo
+/proc/vmallocinfo
+EOF
+)
+    echo ${files}
+
+    local tmp=$(mktemp)
+    cat << EOF > ${tmp}
+11111111111111111
+22222222222222222
+33333333333333333
+EOF
+    echo ${tmp}
+}
+
+read_file() {
+    local f=/etc/passwd
+
+    while read line; do
+        echo "[${line}]"
+    done < ${f}
+
+    cat ${f} | while read line; do
+        echo "[${line}]"
+    done
 }
 
 run_with_root_or_sudo() {
@@ -291,6 +417,7 @@ read_line() {
 
 # read_line
 # string
+# read_file
 # comment
 # array
 # pass_array
@@ -298,8 +425,10 @@ read_line() {
 # calc
 # if_else
 # case_statement
-for_statement
+getopts_case -a XXX -h -v
+# for_statement
 # while_statement
 # util_statement
 
 # fun_show
+# background_wait

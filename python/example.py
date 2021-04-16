@@ -8,6 +8,24 @@
 # @description:
 # ********************************************************
 
+import os
+import requests
+
+def download():
+    url = 'https://example.com/data.tar.gz'
+    user = 'admin'
+    passwd = 'admin'
+
+    ## https://docs.python-requests.org/zh_CN/latest/api.html#requests.Response.iter_content
+    r = requests.get(url, stream=True, auth=(user, passwd))
+    if r.ok:
+        print("r.ok:%s" %(r.ok))
+        b = True
+        with open(os.path.basename(url), 'wb') as f:
+            for i in r.iter_content(chunk_size=1024):
+                f.write(i)
+
+
 if __name__ == '__main__':
-    pass
+    download()
 
