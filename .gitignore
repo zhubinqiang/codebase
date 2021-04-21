@@ -148,3 +148,9 @@ dmypy.json
 
 ## log
 *.log
+
+## cmake
+/cmake/*/BUILD/
+/cmake/Demo/*/BUILD/
+
+
