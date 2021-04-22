@@ -8,7 +8,9 @@ rm -rf ${BUILD_DIR}
 mkdir -p ${BUILD_DIR}
 
 cd ${BUILD_DIR}
-cmake ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+
+# cmake ..
 
 make
 
