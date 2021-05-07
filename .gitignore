@@ -191,4 +191,8 @@ dkms.conf
 /cmake/*/BUILD/
 /cmake/Demo/*/BUILD/
 
+## python
+/python/spider-scrapy/1/output.*
+/python/spider-scrapy/tutorial/output/
+
 
