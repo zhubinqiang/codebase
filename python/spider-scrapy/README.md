@@ -22,7 +22,7 @@ cd tutorial/
 cd spiders/
 scrapy genspider quotes http://quotes.toscrape.com/page/1/
 
-scrapy crawl quotes
+scrapy crawl quotes -o out.jl -s FEED_EXPORT_ENCODING=utf-8
 ```
 
 ## scrapy shell

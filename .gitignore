@@ -194,5 +194,6 @@ dkms.conf
 ## python
 /python/spider-scrapy/1/output.*
 /python/spider-scrapy/tutorial/output/
+/python/spider-scrapy/non_pipeline/output/
 
 
