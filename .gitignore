@@ -196,4 +196,7 @@ dkms.conf
 /python/spider-scrapy/tutorial/output/
 /python/spider-scrapy/non_pipeline/output/
 
+## c
+/c/gdb/out
+/c/gdb/out*
 
