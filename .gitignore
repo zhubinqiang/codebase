@@ -137,8 +137,31 @@ dmypy.json
 ## vim
 *.swp
 
-## java
+# java class file
 *.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+/target
+/.settings
+/.classpath
+/.project
+/.idea
+
+# ignore Maven generated target folders
+target
+out
+
+# ignore eclipse files
+.project
+.classpath
+.settings
+.factorypath
+.metadata
+.idea
+*.iml
 
 ## C/C++
 *.o
@@ -199,4 +222,8 @@ dkms.conf
 ## c
 /c/gdb/out
 /c/gdb/out*
+
+## java
+/java/*/out/
+
 
