@@ -1,6 +1,7 @@
 
 SRC = ./src
 INC = -I./include
+LIBS = -L/usr/lib/x86_64-linux-gnu -lm
 EXE = out
 
 # %.o: ${SRC}/%.c
@@ -17,7 +18,7 @@ all: $(EXE)
 	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 $(EXE): main.o mathFunction.o multiplication-table.o
-	$(CC) $(CFLAGS) $(INC) -o $@ $+
+	$(CC) $(CFLAGS) -o $@ $+ $(LIBS)
 
 clean:
 	rm -f *.o core.*

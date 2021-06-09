@@ -16,6 +16,8 @@ int main(int argc, char *argv[]) {
 
     multitab(exponent);
 
+    sqrt_pi();
+
     return 0;
 }
 

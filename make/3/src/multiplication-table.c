@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "mymath.h"
+#include <math.h>
 
 void multitab(int n) {
     int i, j;
@@ -9,6 +10,10 @@ void multitab(int n) {
         }
         printf("\n");
     }
+}
+
+void sqrt_pi() {
+    printf("sqrt of pi = %f\n", sqrt(M_PI));
 }
 
 
