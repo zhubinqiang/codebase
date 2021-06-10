@@ -1,26 +1,21 @@
-/*
- * @file: test.c
- * @author: ZhuBinQiang <zhu.binqiang@163.com>
- * @create time: 2021-05-21 16:41:21
- * @last modified: 2021-05-21 16:41:21
- * @description:
- */
 #include <stdio.h>
 #include "hello.h"
 
 void f1() {
     char *str = "This is f1";
-    printf("%s\n", str);
+    char *p = &str[0];
+    while(*p != '\0') {
+        printf("%-2c", *p);
+        p++;
+    }
+    printf("\n%s\n", str);
 }
 
 void f2() {
+    // 1 + 2 + ... + 10
     int i = 0;
     int s = 0;
-
-    i = i + 2;
-    i = i + 3;
-
-    for (i = 1; i < 5; ++i) {
+    for (i = 1; i <= 10; ++i) {
         s += i;
     }
     printf("S = %d\n", s);
@@ -33,7 +28,7 @@ int main(int argc, char *argv[]) {
     printf("s = %d\n", s);
     f1();
     f2();
-    f3();
+    f3(2, 5);
 
     return 0;
 }

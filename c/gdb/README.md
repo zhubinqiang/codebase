@@ -6,10 +6,10 @@ below content is copied from: https://linuxtools-rst.readthedocs.io/zh_CN/latest
 run：简记为 r ，其作用是运行程序，当遇到断点后，程序会在断点处停止运行，等待用户输入下一步的命令。
 continue （简写c ）：继续执行，到下一个断点处（或运行结束）
 next：（简写 n），单步跟踪程序，当遇到函数调用时，也不进入此函数体；此命令同 step 的主要区别是，step 遇到用户自定义的函数，将步进到函数中去运行，而 next 则直接调用函数，不会进入到函数体内。
-step （简写s）：单步调试如果有函数调用，则进入函数；与命令n不同，n是不进入调用的函数的
+step (简写s 相当于step into): 单步调试如果有函数调用，则进入函数；与命令n不同，n是不进入调用的函数的
 until：当你厌倦了在一个循环体内单步跟踪时，这个命令可以运行程序直到退出循环体。
-until+行号： 运行至某行，不仅仅用来跳出循环
-finish： 运行程序，直到当前函数完成返回，并打印函数返回时的堆栈地址和返回值及参数值等信息。
+until 行号： 运行至某行，不仅仅用来跳出循环  取消/删除2行之间的断点,否则会在断点处暂停
+finish：跳出当前函数，并输出一些函数返回的信息
 call 函数(参数)：调用程序中可见的函数，并传递“参数”，如：call gdb_test(55)
 quit：简记为 q ，退出gdb
 
@@ -17,13 +17,15 @@ quit：简记为 q ，退出gdb
 ## 设置断点
 break n （简写b n）:在第n行处设置断点
 （可以带上代码路径和代码名称： b OAGUPDATE.cpp:578）
+b a.c:16: 在a.c文件中的第16行设置断点
 b fn1 if a＞b：条件断点设置
+b 17 if s != 0: 当s!=0时，设置断点
 break func（break缩写为b）：在函数func()的入口处设置断点，如：break cb_button
-delete 断点号n：删除第n个断点
+info b (info breakpoints) ：显示当前程序的断点设置情况
+delete 断点号n(delete简写 d)：删除第n个断点
 disable 断点号n：暂停第n个断点
 enable 断点号n：开启第n个断点
 clear 行号n：清除第n行的断点
-info b （info breakpoints） ：显示当前程序的断点设置情况
 delete breakpoints：清除所有断点：
 
 
@@ -45,13 +47,15 @@ display 表达式：在单步运行时将非常有用，使用display命令设�
 watch 表达式：设置一个监视点，一旦被监视的“表达式”的值改变，gdb将强行终止正在被调试的程序。如： watch a
 whatis ：查询变量或函数
 info function： 查询函数
-扩展info locals： 显示当前堆栈页的所有变量
+info locals： 显示当前堆栈页的所有变量
 
 
 ## 查询运行信息
 where/bt ：当前运行的堆栈列表；
 bt backtrace 显示当前调用堆栈
 up/down 改变堆栈显示的深度
+set var sum=0: 修改变量的值
+p sum=123: 修改变量的值
 set args 参数:指定运行时的参数
 show args：查看设置好的参数
 info program： 来查看程序的是否在运行，进程号，被暂停的原因。
