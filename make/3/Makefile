@@ -2,7 +2,8 @@
 SRC = ./src
 INC = -I./include
 LIBS = -L/usr/lib/x86_64-linux-gnu -lm
-EXE = out
+OBJS = main.o mathFunction.o multiplication-table.o
+TARGET = main
 
 # %.o: ${SRC}/%.c
 # 	cc $(INC) -c $^
@@ -12,19 +13,18 @@ EXE = out
 CC = gcc
 CFLAGS = -g -Wall
 
-all: $(EXE)
+all: $(TARGET)
 
 %.o: $(SRC)/%.c
 	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
-$(EXE): main.o mathFunction.o multiplication-table.o
+$(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $+ $(LIBS)
 
 clean:
 	rm -f *.o core.*
 
 mrproper: clean
-	rm -f $(EXE)
-
+	rm -f $(TARGET)
 
 
