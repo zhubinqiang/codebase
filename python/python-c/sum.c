@@ -6,7 +6,7 @@ void sum(int start, int end) {
     for (i = start; i <= end; ++i) {
         s += i;
     }
-    printf("S = %d + ... + %d = %d", start, end, s);
+    printf("S = %d + ... + %d = %d\n", start, end, s);
 }
 
 int main(int argc, char *argv[])
