@@ -226,4 +226,5 @@ dkms.conf
 ## java
 /java/*/out/
 
+/rpm/*/rpmbuild/
 

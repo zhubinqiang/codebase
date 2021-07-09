@@ -1,0 +1,16 @@
+--- a/myCat.c     2021-07-05 17:13:45.572435567 +0800
++++ b/myCat.c     2021-07-05 16:54:14.688420137 +0800
+@@ -1,10 +1,11 @@
+ #include <stdio.h>
++#define MAX_LINE 1024
+
+ int cat(char *path) {
+     FILE *file; ;
+     if ((file = fopen(path, "r")) == NULL) {
+         printf("Open %s Falied!\n", path);
+-        return 1;
++        return 128;
+     }
+
+     char buff[255];
+

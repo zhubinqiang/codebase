@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int cat(char *path) {
+    FILE *file; ;
+    if ((file = fopen(path, "r")) == NULL) {
+        printf("Open %s Falied!\n", path);
+        return 1;
+    }
+
+    char buff[255];
+    int i = 0;
+    while (!feof(file)) {
+        fgets(buff, MAX_LINE, file);
+        i++;
+        printf("%d: %s", i, buff);
+    }
+    fclose(file);
+    return 0;
+}
+
+int main(int argc, char *argv[]) {
+    cat(argv[1]);
+    return 0;
+}
+
+
