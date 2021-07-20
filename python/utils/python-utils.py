@@ -31,11 +31,13 @@ json_file = '''
 }
 '''
 
+## refer to https://www.runoob.com/python/python-json.html
 import json
 def handle_json():
     # data = json.load(open('path/to/jsfile', w))
     data = json.loads(json_file)
     print(data)
+    print(json.dumps(data, sort_keys=True, indent=4, separators=(',', ': ')))
 
 
 yaml_file = '''
@@ -76,6 +78,7 @@ def handle_yaml():
     data = yaml.load(yaml_file, Loader=yaml.Loader)
     print(data)
 
+    # ordered_data = ordered_yaml_load(open('/path/to/file'))
     ordered_data = ordered_yaml_load(yaml_file)
     print(ordered_data)
 
