@@ -228,3 +228,6 @@ dkms.conf
 
 /rpm/*/rpmbuild/
 
+/deb/*/*.deb
+/deb/1/mydeb/
+
