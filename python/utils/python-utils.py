@@ -33,11 +33,14 @@ json_file = '''
 
 ## refer to https://www.runoob.com/python/python-json.html
 import json
+from collections import OrderedDict
 def handle_json():
-    # data = json.load(open('path/to/jsfile', w))
+    # data = json.load(open('path/to/jsfile'))
+    # data = json.load(open('path/to/jsfile'), object_pairs_hook=OrderedDict)
     data = json.loads(json_file)
     print(data)
     print(json.dumps(data, sort_keys=True, indent=4, separators=(',', ': ')))
+    # print(json.dumps(data, sort_keys=False, indent=4, separators=(',', ': ')))
 
 
 yaml_file = '''
