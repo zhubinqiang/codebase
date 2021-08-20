@@ -224,6 +224,13 @@ array() {
         echo "${i}: ${list2[$i]}"
     }
 
+
+    local ARGS=()
+    ARGS+=(-a)
+    ARGS+=(-b)
+    ARGS+=(-c 123)
+
+    echo "ARGS: ${ARGS[@]}"
 }
 
 _print_array() {
@@ -419,13 +426,13 @@ read_line() {
 # string
 # read_file
 # comment
-# array
+array
 # pass_array
 # run_with_root_or_sudo
 # calc
 # if_else
 # case_statement
-getopts_case -a XXX -h -v
+# getopts_case -a XXX -h -v
 # for_statement
 # while_statement
 # util_statement
