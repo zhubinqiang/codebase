@@ -222,6 +222,8 @@ dkms.conf
 ## c
 /c/gdb/out
 /c/gdb/out*
+/c/library-dynamic/main
+/c/library-static/main
 
 ## java
 /java/*/out/
