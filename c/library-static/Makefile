@@ -9,24 +9,20 @@ all: main
 %.o: src/%.c
 	$(CC) $(CFLAGS) -I./include -c -o $@ $<
 
-lib1: add.o multitab.o
-	ar -crv libone.a $+
-	# $(CC)  -I./include -fPIC -shared -o libone.so $+
+libone.a: add.o multitab.o
+	ar -crv libone.a $^
 
-lib2: power.o pi.o
-	ar -crv libtwo.a $+
-	# $(CC)  -I./include -fPIC -shared -Wl,-soname,libtwo.so.2 -o libtwo.so.2.1 $+
-	# ln -sf libtwo.so.2.1 libtwo.so.2
-	# ln -sf libtwo.so.2 libtwo.so
+libtwo.a: power.o pi.o
+	ar -crv libtwo.a $^
 
-main: lib1 lib2
+main: main.c libone.a libtwo.a
 	$(CC) $(CFLAGS) main.c -I./include -L. -lone -ltwo -o $@
 
 run: main
 	LD_LIBRARY_PATH=. ./main
 
 clean:
-	rm -f *.o core.* lib*.so lib*.so*
+	rm -f *.o core.* lib*.a
 
 mrproper: clean
 	rm -f main
