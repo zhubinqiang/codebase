@@ -25,6 +25,7 @@ COMMIT
         echo "comment2"
         echo "comment3"
     fi
+
 }
 
 calc() {
@@ -332,6 +333,10 @@ string() {
     [[ -n ${s} ]]
 
     ## set default string
+    : ${E:=456}
+    echo "E: ${E}"
+
+    ## set default string
     ## ${s:-"xxx"}
     local A=123
     echo "A: ${A}"
@@ -423,10 +428,10 @@ read_line() {
 
 
 # read_line
-# string
+string
 # read_file
 # comment
-array
+# array
 # pass_array
 # run_with_root_or_sudo
 # calc
