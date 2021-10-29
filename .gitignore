@@ -238,5 +238,7 @@ dkms.conf
 /meson-ninja/hello-ninja/main
 /meson-ninja/hello-meson/build/
 /meson-ninja/hello-meson/INS/
+/meson-ninja/Demo/INS/
+/meson-ninja/Demo/build/
 
 
