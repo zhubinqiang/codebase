@@ -163,6 +163,43 @@ getopts_case() {
     echo $*
 }
 
+getopt_case() {
+    local args=$(getopt -l "iteration:" -o "f:s:t:i:n:v:C:p:h" -- "$@")
+
+    eval set -- "$args"
+
+    while [ $# -ge 1 ]; do
+        case "$1" in
+            --)
+                # No more options left.
+                shift
+                break
+                ;;
+            -s)
+                local s="$2"
+                shift
+                ;;
+            -i | --iteration)
+                local iteration="$2"
+                shift
+                ;;
+            -n)
+                local name="$2"
+                shift
+                ;;
+            -h)
+                echo "Display some help"
+                exit 0
+                ;;
+        esac
+
+        shift
+    done
+
+	echo "name:${name}"
+	echo "iteration:${iteration}"
+}
+
 for_statement() {
     for i in a b c d; do
         echo ${i}
@@ -428,7 +465,7 @@ read_line() {
 
 
 # read_line
-string
+# string
 # read_file
 # comment
 # array
@@ -438,6 +475,7 @@ string
 # if_else
 # case_statement
 # getopts_case -a XXX -h -v
+getopt_case -n name --iteration XXX
 # for_statement
 # while_statement
 # util_statement
