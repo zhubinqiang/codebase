@@ -233,3 +233,10 @@ dkms.conf
 /deb/*/*.deb
 /deb/1/mydeb/
 
+*.ninja_log
+*.ninja_deps
+/meson-ninja/hello-ninja/main
+/meson-ninja/hello-meson/build/
+/meson-ninja/hello-meson/INS/
+
+

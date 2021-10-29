@@ -1,0 +1,19 @@
+
+include rules.ninja
+
+## refer to https://linux.cn/article-12798-1.html
+# rule compile
+#   command = $CC $CFLAGS -c $in -o $out
+#   description = gcc -c xxx.c -o xxx.o
+
+# rule link1
+#   command = gcc $in -o $out
+#   description = gcc xxx.o -o xxx
+#   deps = gcc
+#   depfile = $DEP_FILE
+
+build main.o: compile main.c
+
+build main: link main.o
+
+

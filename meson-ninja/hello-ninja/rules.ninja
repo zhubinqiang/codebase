@@ -1,0 +1,13 @@
+CC = gcc
+CFLAGS = -g -Wall
+
+rule compile
+  command = $CC $CFLAGS -c $in -o $out
+  description = gcc -c xxx.c -o xxx.o
+  deps = gcc
+  depfile = $out.d
+
+rule link
+  command = gcc $in -o $out
+  description = gcc xxx.o -o xxx
+
