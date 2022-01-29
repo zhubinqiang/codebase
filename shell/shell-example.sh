@@ -463,6 +463,24 @@ read_line() {
     echo "Password: ${pass}"
 }
 
+log2file() {
+
+    cat << EOF
+#!/bin/bash -exu
+exec 3>&1 4>&2
+
+trap 'exec 2>&4 1>&3' 0 1 2 3
+exec 1> script.log 2>&1
+
+pwd
+
+ls 12345
+
+date
+EOF
+
+}
+
 
 # read_line
 # string
@@ -475,10 +493,12 @@ read_line() {
 # if_else
 # case_statement
 # getopts_case -a XXX -h -v
-getopt_case -n name --iteration XXX
+# getopt_case -n name --iteration XXX
 # for_statement
 # while_statement
 # util_statement
 
 # fun_show
 # background_wait
+
+log2file

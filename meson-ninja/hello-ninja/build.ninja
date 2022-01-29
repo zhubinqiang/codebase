@@ -12,6 +12,7 @@ include rules.ninja
 #   deps = gcc
 #   depfile = $DEP_FILE
 
+# build output_file: rule_name input_files
 build main.o: compile main.c
 
 build main: link main.o
