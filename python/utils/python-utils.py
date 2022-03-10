@@ -81,6 +81,9 @@ def handle_yaml():
     data = yaml.load(yaml_file, Loader=yaml.Loader)
     print(data)
 
+    ## PyYAML version to > 3.13 to avoid [unexpected keyword argument 'sort_keys']
+    yaml.dump(data, open('a.yaml', 'w'), default_flow_style=False,sort_keys=False)
+
     # ordered_data = ordered_yaml_load(open('/path/to/file'))
     ordered_data = ordered_yaml_load(yaml_file)
     print(ordered_data)
