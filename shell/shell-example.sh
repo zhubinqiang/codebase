@@ -410,7 +410,10 @@ cat << EOF
 /proc/vmallocinfo
 EOF
 )
+    ## one line
     echo ${files}
+    ## new line
+    echo "${files}"
 
     local tmp=$(mktemp)
     cat << EOF > ${tmp}
@@ -483,7 +486,7 @@ EOF
 
 
 # read_line
-# string
+string
 # read_file
 # comment
 # array

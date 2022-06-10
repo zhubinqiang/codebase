@@ -88,6 +88,29 @@ def handle_yaml():
     ordered_data = ordered_yaml_load(yaml_file)
     print(ordered_data)
 
+
+## refer to https://www.cainiaojc.com/note/qa55ip.html
+## chmod 600 ~/.netrc
+## machine example.com
+##     login user
+##     password p@ssw0rD
+def handle():
+    import netrc
+    netrc = netrc.netrc()
+    remoteHostName = "example.com"
+    authTokens = netrc.authenticators(remoteHostName)
+    print("Remote Host Name:%s" % (remoteHostName))
+    print("User Name at remote host:%s" % (authTokens[0]))
+    print("Account Password:%s" % (authTokens[1]))
+    print("Password for the user name at remote host:%s" % (authTokens[2]))
+    macroDictionary = netrc.macros
+    print(macroDictionary)
+
+    import base64
+    print(base64.b64encode("password".encode("utf-8")))
+    print(base64.b64decode(b'cGFzc3dvcmQ='.decode("utf-8")))
+
+
 def main():
     handle_json()
     handle_yaml()
