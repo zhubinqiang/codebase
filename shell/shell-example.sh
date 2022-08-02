@@ -468,6 +468,7 @@ read_line() {
 
 log2file() {
 
+    ## refer to https://unix.stackexchange.com/questions/42728/what-does-31-12-23-do-in-a-script
     cat << EOF
 #!/bin/bash -exu
 exec 3>&1 4>&2
