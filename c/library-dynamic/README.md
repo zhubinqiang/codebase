@@ -37,7 +37,7 @@ export CPP_INCLUDE_PATH=/path/to/include:${CPP_INCLUDE_PATH}
 ```
 
 ## 运行带有动态库的可执行文件
-执行的时候要导入到 `LD_LIBRARY_PATH` 变量中。否则不一定能找到，会报"cannot open shared object file"  
+执行的时候要导入到 `LD_LIBRARY_PATH` 变量中。否则不一定能找到，会报"cannot open shared object file"
 ```sh
 export LD_LIBRARY_PATH=.
 ./dynamic
@@ -50,5 +50,10 @@ export LD_LIBRARY_PATH=.
 也可以使用 `patchelf` 命令指定
 ```sh
 patchelf --set-rpath $PWD ./dynamic
+
+# patchelf \
+# 	--set-interpreter /opt/glibc-2.28/lib/ld-2.28.so \
+# 	--set-rpath /opt/glibc-2.28/lib:/lib64 \
+# 	out-patched
 ```
 

@@ -223,9 +223,13 @@ dkms.conf
 /c/gdb/out
 /c/gdb/out*
 /c/library-dynamic/main
+/c/library-dynamic/*.nodebug
+/c/library-dynamic/*.patched
 /c/library-static/main
 /c/compile-link/**/main
 /c/compile-link/**/main2
+/c/file/main
+/c/file/*.txt
 
 ## java
 /java/*/out/
