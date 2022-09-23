@@ -202,7 +202,6 @@ out
 modules.order
 Module.symvers
 Mkfile.old
-dkms.conf
 
 ## log
 *.log
