@@ -71,6 +71,20 @@ pipeline {
                     userRemoteConfigs: [[credentialsId: 'media-user', url: 'https://github.com/phodal/github.git']]
                 ])
                 sh 'printenv'
+
+                script {
+                    /* token is from jenkins
+                    Configure ---> API Token --> Add new Token
+                    */
+                    def USER = 'your_name'
+                    def TOKEN = 'your_token'
+                    withCredentials([usernamePassword(credentialsId: '11111111-aaaa-2222-3333-444444bbbbbb', usernameVariable: 'USER', passwordVariable: 'TOKEN')]){
+                        sh """#!/bin/bash
+                        curl JENKINS_URL/job/JOB_NAME/buildWithParameters --user $USER:$TOKEN --data id=123 --data manifest=abc
+                        """
+                    }
+                }
+
             }
         }
 
