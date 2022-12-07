@@ -1,0 +1,6 @@
+hithere (1.0-1) UNRELEASED; urgency=low
+
+  * Initial release. Closes: #nnnn
+    <nnnn is the bug number of your ITP>
+
+ -- bzhux <bin.qiangx.zhu@gmail.com>  Fri, 24 Sep 2021 11:35:13 +0800
