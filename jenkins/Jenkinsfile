@@ -5,6 +5,11 @@ def docker_args = '-e "BUILD_TYPE=debug" -e "build_type=debug"'
 
 def mail_list = 'user1@example.com, user2@example.com'
 
+// https://www.jfrog.com/confluence/display/RTF5X/Working+With+Pipeline+Jobs+in+Jenkins
+/* def server = Artifactory.newServer url: 'artifactory-url', username: 'username', password: 'password' */
+/* def server = Artifactory.newServer url: 'artifactory-url', credentialsId: 'ccrreeddeennttiiaall' */
+/* server.bypassProxy = true */
+
 def server = Artifactory.server 'example-artifactory-server'
 
 def uploadSpec = '''
@@ -108,6 +113,19 @@ pipeline {
                 }
 
             }
+        }
+
+        stage('lock a node') {
+            /* "Lockable Resources plugin" */
+            lock('a-linux-node') {
+
+                /* trigger a new job on "a-linux-node" */
+                build job: 'a-linux-node', parameters: [
+                    string(name: 'docker_image_ub', value: docker_image_ub),
+                    string(name: 'BUILD_NUMBER', value: "${BUILD_NUMBER}"),
+                    string(name: 'NODE', value: env.NODE_NAME)]
+            }
+
         }
 
         stage('report') {
