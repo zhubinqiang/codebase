@@ -110,10 +110,17 @@ def handle():
     print(base64.b64encode("password".encode("utf-8")))
     print(base64.b64decode(b'cGFzc3dvcmQ='.decode("utf-8")))
 
+def cartesian_product():
+    import itertools
+    a = [1, 2, 3]
+    b = ['a', 'b', 'c']
+    for (x, y) in itertools.product(a, b):
+        print("%d --> %s" %(x, y))
 
 def main():
     handle_json()
     handle_yaml()
+    cartesian_product()
 
 if __name__ == "__main__":
     main()
