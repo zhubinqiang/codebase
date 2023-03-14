@@ -25,6 +25,9 @@ def download():
             for i in r.iter_content(chunk_size=1024):
                 f.write(i)
 
+    session = requests.Session()
+    r2 = session.get(url, stream=True, auth=(user, passwd))
+
 
 if __name__ == '__main__':
     download()

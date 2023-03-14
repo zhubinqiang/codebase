@@ -59,6 +59,7 @@ def yield_statement():
 
 def test_yield():
     g = yield_statement()
+    print("00000000000")
 
     ## 4
     print(next(g))
@@ -94,9 +95,9 @@ def test_decorator(name='Tom', grades={'Math': 100, 'English': 98, 'Chinese': 95
 
 
 def main():
-    # test_yield()
+    test_yield()
     # test_iterator()
-    test_decorator('Jerry', grades={'Math': 99, 'English': 100, 'Chinese': 100})
+    # test_decorator('Jerry', grades={'Math': 99, 'English': 100, 'Chinese': 100})
 
 if __name__ == '__main__':
     main()
