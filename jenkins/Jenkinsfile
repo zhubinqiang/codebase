@@ -52,6 +52,8 @@ pipeline {
                     try {
                         bat 'pwd'
                     } catch(exc) {
+                        echo exc.getMessage()
+                        echo 'Exception occurred: ' + exc.toString()
                         echo 'pwd failed !'
                     } finally {
                         echo 'finally block'
@@ -88,6 +90,11 @@ pipeline {
                         curl JENKINS_URL/job/JOB_NAME/buildWithParameters --user $USER:$TOKEN --data id=123 --data manifest=abc
                         """
                     }
+
+                    def tar_file = sh(
+                        returnStdout: true,
+                        script: "ls *.tar.gz").trim()
+                    echo tar_file
                 }
 
             }
