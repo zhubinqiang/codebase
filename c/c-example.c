@@ -264,6 +264,13 @@ void handle_struct() {
 
     struct complex_struct z6 = complex_add(z3, z5);
     complex_show(z6);
+
+    struct complex_struct z7 = {
+        .x = 4,
+        .y = 5
+    };
+    complex_show(z7);
+
 }
 // struct end
 
@@ -378,16 +385,86 @@ void recursive() {
             a, b, greatest_common_divisor(a, b));
 }
 
+// const
+void handle_const() {
+    const int a = 3;
+
+    // Compilation error: read-only variaale
+    // a++;
+
+    int *pa = (int*)&a;
+    *pa = 5;
+
+    printf("a = %d\n", a);
+    printf("*pa = %d\n", *pa);
+
+    // int const* is equivalent to const int*.
+    int const b = 4;
+    int* const pb = (int*)&b;
+
+    *pb = 5;
+    printf("*b = %d\n", b);
+    printf("*pb = %d\n", *pb);
+
+    // Compilation error: assignment of read-only variable ‘pb’
+    // pb = (int*)&a;
+
+
+
+    int c= 7;
+    const int* pb2 = &c;
+    pb2 = &a;
+    printf("*pb2 = %d\n", *pb2);
+
+    // Compilation error: assignment of read-only location ‘*pb2’
+    // *pb2 = 7;
+
+    /* ASCII
+     * char           0    A    a
+     * decimal       48   65   97
+     * hexadecimal 0x30 0x41 0x61
+     * */
+    short d = 0x4241; // BA
+    short *p = &d;
+    char *pc = (char*)p;
+    printf("*pc = %c\n", *pc);
+
+    if (*pc == 'A') {
+        printf("Little Endian\n");
+    } else {
+        printf("Big Endian\n");
+    }
+
+}
+
+int max(int a, int b) {
+    return a > b ? a : b;
+}
+
+void handle_callback() {
+    int (*p)(int, int) = max;
+    int a, b, c, d;
+    a = 3;
+    b = 4;
+    c = 5;
+
+    d = p(p(a, b), c);
+    printf("the max is %d\n", d);
+}
+
+
 int main(int argc, char *argv[]) {
     // if_statement();
     // switch_statement(6);
     // loop_statement();
-    array_statement();
+    // array_statement();
     // handle_string();
     // handle_struct();
     // handle_enum();
     // recursive();
     // printf("Average of 1, 2, 3, 4, 5 = %d\n", average(5, 1, 2, 3, 4, 5));
+    // handle_const();
+    handle_callback();
 
     return 0;
 }

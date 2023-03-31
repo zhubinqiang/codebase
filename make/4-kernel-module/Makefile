@@ -1,3 +1,7 @@
+## to avoid this issue
+# "module verification failed: signature and/or required key missing - tainting kernel"
+CONFIG_MODULE_SIG=n
+CONFIG_MODULE_SIG_ALL=n
 
 obj-m := hello.o
 
