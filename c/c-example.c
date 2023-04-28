@@ -27,6 +27,13 @@ void if_statement() {
     if (x <= 0 || x >=10) {
         printf("%d is out of range. \n", x);
     }
+
+    // !0 == 1, !2 = 0
+    printf("!-1 = %d\n", !-1);
+    printf("!0 = %d\n", !0);
+    printf("!1 = %d\n", !1);
+    printf("!2 = %d\n", !2);
+
 }
 
 void switch_statement(int day) {
@@ -452,6 +459,12 @@ void handle_callback() {
     printf("the max is %d\n", d);
 }
 
+void show_args(int argc, char *argv[]) {
+    int i;
+    for (i=0; i<argc; i++) {
+        printf("argv[%d] = %s\n", i, argv[i]);
+    }
+}
 
 int main(int argc, char *argv[]) {
     // if_statement();
@@ -464,7 +477,8 @@ int main(int argc, char *argv[]) {
     // recursive();
     // printf("Average of 1, 2, 3, 4, 5 = %d\n", average(5, 1, 2, 3, 4, 5));
     // handle_const();
-    handle_callback();
+    // handle_callback();
+    show_args(argc, argv);
 
     return 0;
 }
