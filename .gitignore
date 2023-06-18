@@ -246,4 +246,5 @@ Mkfile.old
 /meson-ninja/Demo/INS/
 /meson-ninja/Demo/build/
 
+/lua/*.txt
 
