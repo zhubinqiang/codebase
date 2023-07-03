@@ -14,15 +14,69 @@
 
 import re
 
+def f0():
+    ## <re.Match object; span=(4, 7), match='163'>
+    ## s = 'www.163.com'
+    ## s[4:7]
+    print(re.search(r'[0-9]+', "www.163.com").group())
+
+    ## match 与search 不同的是它从头开始匹配，并返回匹配的第一个。这个返回值为None
+    print(re.match(r'[0-9]+', "www.163.com"))
+    print(re.search(r'^[0-9]+', "www.163.com"))
+
+    print(re.match(r'\w+@\w+\.\w+', "example@163.com").group())
+    ## fullmatch 字符串从头到尾完全匹配
+    print(re.fullmatch(r'\w+@\w+\.\w+', "example@163.com").group())
+
+
+    ## ['www', '163', 'com']
+    print(re.findall(r'\w+', 'www.163.com'))
+
+    ## finditer 返回Match对象的迭代器
+    for i in re.finditer(r'\w+', 'www.163.com'):
+        print(i.group())
+
+
+    ## 分组 ()
+    ## <re.Match object; span=(0, 15), match='example@163.com'>
+    m = re.search(r'(\w+)@(\w+)\.(\w+)', 'example@163.com')
+
+    ## ('example', '163', 'com')
+    print(m.groups())
+    print(m.group(1), m.group(2), m.group(3))
+
+    ## ('com', '163', 'example')
+    print(m.group(3, 2, 1))
+
+
+    ## \1 引用第一个匹配到的分组
+    print(re.search(r'(\w+),\1', 'abc,abc').group())
+
+    ## 'abc.123 123abc'
+    print(re.search(r'(\w+)\.(\d+) \2\1', 'abc.123 123abc').group())
+
+    ## 替换
+    ### www.163.com
+    print(re.sub(r'\s+', '.', 'www  163    com'))
+
+    ### 'www.163    com' 设置最大替换数量
+    print(re.sub(r'\s+', '.', 'www  163    com', count=1))
+
+    ### www.163.com
+    print(re.sub(r'(\w+)\s(\w+)', r'\2, \1', 'hello world'))
+
+
+
 ## 只返回第一个匹配项
 def f1():
     ## refer to https://zhuanlan.zhihu.com/p/127807805
-    ## search 函数值返回第一个
+    ## search 只返回第一个
     s = 'a1b23cd456'
-    print(re.search('[0-9]+', s).group())
+    print(re.search(r'[0-9]+', s).group())
 
-    ## match 从字符开头匹配
-    print(re.match('[0-9]+', '123abc', re.DEBUG).group())
+    ## match 从字符开头匹配，只返回第一个
+    print(re.match(r'[0-9]+', '123abc', re.DEBUG).group())
+    print(re.search(r'^[0-9]+', '123abc', re.DEBUG).group())
 
     ## fullmatch 整个字符串完全匹配
     print(re.fullmatch('[0-9]+[a-z]+', '123Abc', re.IGNORECASE).group())
@@ -84,11 +138,12 @@ def sub():
 
 
 def main():
+    f0()
     # f1()
     # fall()
     # search()
     # split()
-    sub()
+    # sub()
 
 
 if __name__ == "__main__":
