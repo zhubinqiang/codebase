@@ -12,45 +12,48 @@
 
 import argparse
 
-
 def f1():
-    parser = argparse.ArgumentParser()
-    parser.parse_args()
+    ## refer to https://www.liaoxuefeng.com/wiki/1016959663602400/1529653965619235
+    parser = argparse.ArgumentParser(
+            prog="program-name",
+            description="How to use argparse",
+            epilog="Text at the bottom of help. Copyright(r), 2023")
 
-def f2():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("echo")
+    ## 位置参数
+    parser.add_argument('outfile')
+
+    parser.add_argument('--host', default='localhost')
+
+    ## 此参数必须为int类型:
+    parser.add_argument('--port', default='3306', type=int)
+
+    ## 必须的参数
+    parser.add_argument('-u', '--user', required=True)
+    parser.add_argument('-p', '--password', required=True)
+    parser.add_argument('--database', required=True, choices=['testdb', 'testdb2'])
+
+    ## -gz 后面不跟参数值，action='store_true' 这个表示出现-gz 它的值为True
+    parser.add_argument('-gz', '--gzcompress', action='store_true', required=False, help='Compress backup files by gz.')
+
+    ## 解析参数
     args = parser.parse_args()
-    print(args.echo)
 
-def f3():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("echo", help="echo the string you use here")
-    parser.add_argument("echo1", help="echo the string you use here2")
-    args = parser.parse_args()
-    print(args.echo)
-    print(args)
+    print(f"outfile = {args.outfile}")
+    print(f"host = {args.host}")
+    print(f"port = {args.port}")
+    print(f"user = {args.user}")
+    print(f"password = {args.password}")
+    print(f"database = {args.database}")
+    print(f"gz = {args.gzcompress}")
 
-def f4():
-    parser = argparse.ArgumentParser(description='add a build to berta server')
-    parser.add_argument('--path', type=str, required=True, help='Artifactory path')
-    parser.add_argument('--product', type=str, required=True, help='berta product')
-    parser.add_argument('--jenkins-buildid', type=str, required=True, help='jenkins build id')
+    # ./python-argparse.py -u root -p 123456 --database testdb -gz backup.sql
 
-    args = parser.parse_args()
-    print(args)
-    print(args.jenkins_buildid)
 
 def main():
-    # f1()
-    # f2()
-    # f3()
-    f4()
-
-
-
+    f1()
 
 
 if __name__ == "__main__":
     main()
+
 
