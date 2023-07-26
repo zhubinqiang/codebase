@@ -123,7 +123,9 @@ def main():
     # handle_yield()
     # handle_iterator()
     # test_decorator('Jerry', grades={'Math': 99, 'English': 100, 'Chinese': 100})
-    handle_closure()
+    # handle_closure()
+    # handle_list()
+    handle_dict()
 
 if __name__ == '__main__':
     main()

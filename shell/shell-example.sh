@@ -264,6 +264,8 @@ array() {
 
 
     local ARGS=()
+    # local ARGS
+    # ARGS=()
     ARGS+=(-a)
     ARGS+=(-b)
     ARGS+=(-c 123)
@@ -284,6 +286,28 @@ pass_array() {
 
     ## there must be ""
     _print_array "${list[*]}"
+}
+
+
+map() {
+    ## refer to https://zhuanlan.zhihu.com/p/289274320
+    declare -A dict=(
+        [main]="main-branch"
+        [master]="master-branch"
+        [dev]="dev-branch"
+)
+    dict["fix"]="fix-branch"
+
+    for key in ${!dict[@]}; do
+        echo "${key}: ${dict[$key]}"
+    done
+
+    ## all values
+    echo -n "All values: "
+    for value in ${dict[@]}; do
+        echo -n "${value} "
+    done
+    echo ""
 }
 
 fun() {
@@ -492,6 +516,7 @@ string
 # comment
 # array
 # pass_array
+# map
 # run_with_root_or_sudo
 # calc
 # if_else
@@ -505,4 +530,6 @@ string
 # fun_show
 # background_wait
 
-log2file
+# log2file
+
+

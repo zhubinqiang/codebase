@@ -31,9 +31,11 @@ def f1():
 def f2():
     name = "Tom"
     age = 23
+    salary = 15000.56
 
     # python version > 3.6
     print(f"{name} is {age} years old")
+    print(f"salary is {salary:.1f}")
 
 def f3():
     name = "Tom"
