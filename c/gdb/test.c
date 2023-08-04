@@ -29,6 +29,7 @@ int main(int argc, char *argv[]) {
     f1();
     f2();
     f3(2, 5);
+    f4();
 
     return 0;
 }

@@ -1,6 +1,7 @@
 # gdb
 
 below content is copied from: https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/gdb.html
+refet to: https://github.com/hellogcc/100-gdb-tips/blob/master/src/help.md
 
 ## 运行
 run：简记为 r ，其作用是运行程序，当遇到断点后，程序会在断点处停止运行，等待用户输入下一步的命令。
@@ -43,10 +44,13 @@ print ++a：将把 a 中的值加1,并显示出来
 print name：将显示字符串 name 的值
 print gdb_test(22)：将以整数22作为参数调用 gdb_test() 函数
 print gdb_test(a)：将以变量 a 作为参数调用 gdb_test() 函数
+set print pretty on: 打印结构体会好看些。help set print 查看更多选项。
+ptype a: 显示类型
 display 表达式：在单步运行时将非常有用，使用display命令设置一个表达式后，它将在每次单步进行指令后，紧接着输出被设置的表达式及值。如： display a
 watch 表达式：设置一个监视点，一旦被监视的“表达式”的值改变，gdb将强行终止正在被调试的程序。如： watch a
 whatis ：查询变量或函数
 info function： 查询函数
+info functions：列出所有函数，或者符合正则的函数 info functions f1
 info locals： 显示当前堆栈页的所有变量
 
 
