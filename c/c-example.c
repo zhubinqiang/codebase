@@ -466,6 +466,24 @@ void show_args(int argc, char *argv[]) {
     }
 }
 
+void format_print() {
+    int i = 5;
+    float_t f = 3.14159;
+
+    printf("ABCDE12345\n");
+    // [ ][ ][ ][0][5]
+    printf("%5.2d\n", i);
+
+    // [0][5][ ][ ][ ]
+    printf("%-5.2d\n", i);
+
+    // [ ][3][.][1][4]
+    printf("%5.2f\n", f);
+
+    // [3][.][1][4][ ]
+    printf("%-5.2f\n", f);
+}
+
 int main(int argc, char *argv[]) {
     // if_statement();
     // switch_statement(6);
@@ -478,7 +496,8 @@ int main(int argc, char *argv[]) {
     // printf("Average of 1, 2, 3, 4, 5 = %d\n", average(5, 1, 2, 3, 4, 5));
     // handle_const();
     // handle_callback();
-    show_args(argc, argv);
+    // show_args(argc, argv);
+    format_print();
 
     return 0;
 }
