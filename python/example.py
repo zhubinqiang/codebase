@@ -93,6 +93,25 @@ def test_decorator(name='Tom', grades={'Math': 100, 'English': 98, 'Chinese': 95
     print(f" English:{grades['English']}")
     print(f" Chinese:{grades['Chinese']}")
 
+## refer to https://zhuanlan.zhihu.com/p/28010894
+class T(object):
+    def m1(self, n):
+        print('self', self, n)
+
+    @classmethod
+    def m2(cls, n):
+        print('cls:', cls, n)
+
+    @staticmethod
+    def m3(n):
+        print(n)
+
+def handle_classmethod():
+    t = T()
+    t.m1('m1')
+    T.m2('m2')
+    T.m3('m3')
+
 
 ## closure 闭包。简单理解就是
 ## 闭包(子函数)是能够读取其他函数(父函数)内部变量的函数
@@ -117,6 +136,7 @@ def handle_closure():
     add_listener, trigger_event = event_listener()
     add_listener(my_listener)
     trigger_event("hello")
+    trigger_event("world")
 
 
 def main():
@@ -125,7 +145,7 @@ def main():
     # test_decorator('Jerry', grades={'Math': 99, 'English': 100, 'Chinese': 100})
     # handle_closure()
     # handle_list()
-    handle_dict()
+    handle_classmethod()
 
 if __name__ == '__main__':
     main()
