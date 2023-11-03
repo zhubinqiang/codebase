@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 # ********************************************************
 # @file: shell-example.sh
 # @author: ZhuBinQiang <zhu.binqiang@163.com>
@@ -205,6 +205,10 @@ for_statement() {
         echo ${i}
     done
 
+    for i in {1..5}; do
+        echo ${i}
+    done
+
     for i in $(cut -d '=' -f1 /etc/os-release); do
         echo ${i}
     done
@@ -225,7 +229,8 @@ while_statement() {
     local s=0
     while [[ "${i}" -le "100" ]]; do
         s=$((s+i))
-        i=$((i+1))
+        # i=$((i+1))
+        i=$(expr ${i} + 1)
     done
     echo "1 + 2 + 3 + ... + 100 = ${s}"
 }
@@ -458,6 +463,7 @@ read_file() {
     cat ${f} | while read line; do
         echo "[${line}]"
     done
+
 }
 
 run_with_root_or_sudo() {
@@ -509,9 +515,44 @@ EOF
 
 }
 
+## refer to https://blog.csdn.net/MyySophia/article/details/128966914
+handle_parallel() {
+    SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    RESULTS=${SCRIPT_DIR}/log
+    test="1,2,3"
+    # echo -n "${test}" | parallel --lb -d, "rm -rf $RESULTS/log_{#}/ ; mkdir -p $RESULTS/log_{#}/"
+    echo -n "$test" | parallel --group -d, "echo thread_{#}; ZE_AFFINITY_MASK={}; mkdir -p ${RESULTS}/{}.log"
+
+    return 0
+
+    seq 5 | parallel seq {} '>' example.{}
+    # for i in $(seq 5); do echo $(seq $i) > example-for.$i;done
+
+    ## ::: 后面跟的是其从命令行的输入
+    parallel echo ::: 1 2 3 4 5
+
+    parallel echo counting lines';' wc -l ::: example.*
+
+    ## dry-run
+    parallel --dry-run echo count {1} {2} ';' wc {1} {2} ::: -c -l ::: example.*
+}
+
+
+handle_backgroud_process() {
+    ## the backgroud jobs will continue to run after the script has been terminated.
+    (
+        for((i=0; i<=15; i++)); do
+            echo ${i}
+            sleep 1
+        done
+    )& pid=$!
+
+    echo pid: ${pid}
+    wait ${pid}
+}
 
 # read_line
-string
+# string
 # read_file
 # comment
 # array
@@ -524,12 +565,18 @@ string
 # getopts_case -a XXX -h -v
 # getopt_case -n name --iteration XXX
 # for_statement
-# while_statement
+while_statement
 # util_statement
 
 # fun_show
+# fun
 # background_wait
 
 # log2file
+
+# handle_parallel
+
+# handle_backgroud_process
+
 
 
