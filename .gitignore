@@ -229,6 +229,8 @@ Mkfile.old
 /c/compile-link/**/main2
 /c/file/main
 /c/file/*.txt
+/c/ogl/*.bin
+/c/ogl/out-*
 
 ## java
 /java/*/out/
