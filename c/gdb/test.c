@@ -11,7 +11,7 @@ void f1() {
     printf("\n%s\n", str);
 }
 
-void f2() {
+int f2() {
     // 1 + 2 + ... + 10
     int i = 0;
     int s = 0;
@@ -19,6 +19,7 @@ void f2() {
         s += i;
     }
     printf("S = %d\n", s);
+    return s;
 }
 
 int main(int argc, char *argv[]) {
@@ -27,7 +28,8 @@ int main(int argc, char *argv[]) {
     int s = i + j;
     printf("s = %d\n", s);
     f1();
-    f2();
+    int sum = f2();
+    printf("sum = %d\n", sum);
     f3(2, 5);
     f4();
 

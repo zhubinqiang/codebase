@@ -11,6 +11,7 @@ step (简写s 相当于step into): 单步调试如果有函数调用，则进入
 until：当你厌倦了在一个循环体内单步跟踪时，这个命令可以运行程序直到退出循环体。
 until 行号： 运行至某行，不仅仅用来跳出循环  取消/删除2行之间的断点,否则会在断点处暂停
 finish：跳出当前函数，并输出一些函数返回的信息
+return: 结束执行当前函数并返回(return/return 1024)，如果当前函数还有剩余的代码未执行完毕，也不会执行了
 call 函数(参数)：调用程序中可见的函数，并传递“参数”，如：call gdb_test(55)
 quit：简记为 q ，退出gdb
 
@@ -32,7 +33,8 @@ delete breakpoints：清除所有断点：
 
 ## 查看源代码
 list ：简记为 l ，其作用就是列出程序的源代码，默认每次显示10行。
-list 行号：将显示当前文件以“行号”为中心的前后10行代码，如：list 12
+l -: 往前显示代码
+list 行号：将显示当前文件以“行号”为中心的前后10行代码，如：(list 12), (l 5,10)
 list 函数名：将显示“函数名”所在函数的源代码，如：list main
 list ：不带参数，将接着上一次 list 命令的，输出下边的内容。
 
@@ -49,7 +51,8 @@ ptype a: 显示类型
 display 表达式：在单步运行时将非常有用，使用display命令设置一个表达式后，它将在每次单步进行指令后，紧接着输出被设置的表达式及值。如： display a
 watch 表达式：设置一个监视点，一旦被监视的“表达式”的值改变，gdb将强行终止正在被调试的程序。如： watch a
 whatis ：查询变量或函数
-info function： 查询函数
+info break： 查询断点 (i b)
+info function： 查询函数 (i fun)
 info functions：列出所有函数，或者符合正则的函数 info functions f1
 info locals： 显示当前堆栈页的所有变量
 
@@ -62,6 +65,10 @@ set var sum=0: 修改变量的值
 p sum=123: 修改变量的值
 set args 参数:指定运行时的参数
 show args：查看设置好的参数
+set environment: 修改环境变量 (set environment USER=media)
+show environment: 查看环境变量 (show environment PATH)
+path: 设定程序运行路径 (path /dev/shm/bin)
+show paths: 查看程序运行路径
 info program： 来查看程序的是否在运行，进程号，被暂停的原因。
 
 
