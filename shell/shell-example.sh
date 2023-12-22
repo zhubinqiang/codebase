@@ -1,3 +1,4 @@
+#!/bin/bash
 #!/bin/bash -x
 # ********************************************************
 # @file: shell-example.sh
@@ -233,6 +234,12 @@ while_statement() {
         i=$(expr ${i} + 1)
     done
     echo "1 + 2 + 3 + ... + 100 = ${s}"
+
+    i=1
+    while (( ${i} <= 5 )); do
+        echo "Count is: ${i}"
+        ((i++))
+    done
 }
 
 util_statement() {
@@ -262,6 +269,10 @@ array() {
 /proc/slabinfo
 /proc/vmallocinfo
 )
+
+    echo '${!list2[@]}:' "${!list2[@]}"
+    echo "xxxxxxxxxxxxxxxxxxxxxxxx"
+
     local len=${#list2[@]}
     for((i=0; i<${len}; i++)) {
         echo "${i}: ${list2[$i]}"
