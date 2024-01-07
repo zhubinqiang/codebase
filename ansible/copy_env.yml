@@ -1,0 +1,88 @@
+---
+  - name: Use minimal recipe
+    import_playbook: "ubuntu-base.yml"
+
+  - hosts: all
+
+    vars:
+      - ansible_python_interpreter: /usr/bin/python3
+      - user: gta
+
+    # environment:
+    #   http_proxy: "http://proxy-example.com:912"
+    #   https_proxy: "http://proxy-example.com:912"
+    #   no_proxy: "127.0.0.1, example.com,.example.com,10.0.0.0/8,192.168.0.0/16,localhost,.local,127.0.0.0/8,134.134.0.0/16"
+
+    tasks:
+
+      # - name: Remove sources.list
+      #   file:
+      #     path: /etc/apt/sources.list
+      #     state: absent
+
+      # - name: "ping"
+      #   become: yes
+      #   ping:
+      #     data: crash
+
+      # # state: touch | directory | absent
+      - name: "create WS"
+        file:
+          path: /home/{{ user }}/WS
+          state: directory
+          owner: "{{ user }}"
+          group: "{{ user }}"
+          mode: 0755
+
+
+      # - name: Copy file with owner and permissions
+      #   ansible.builtin.copy:
+      #     src: /home/binqiang/WS/tmp/docker-inside-env.tar.gz
+      #     dest: /home/{{ user }}/WS/docker-inside-env.tar.gz
+      #     owner: "{{ user }}"
+      #     group: "{{ user }}"
+      #     mode: '0644'
+
+
+      # - name: Extract docker-inside-env.tar.gz into /home/gta/WS
+      #   ansible.builtin.unarchive:
+      #     src: /home/binqiang/WS/tmp/docker-inside-env.tar.gz
+      #     dest: /home/{{ user }}/WS/
+
+      # - name: This command will change the working directory to somedir/.
+      #   shell:
+      #     chdir: /home/gta/WS/docker-inside-env
+      #     cmd: bash setup.sh
+      # - name: install nvim
+      #   shell:
+      #     chdir: /home/gta/WS/docker-inside-env/nvim-env
+      #     cmd: bash setup-nvim.sh
+
+
+      - name: install nvim
+        shell:
+          chdir: /home/gta/WS/docker-inside-env/nvim-env
+          cmd: |
+            ls
+            pwd
+            cd /tmp
+            ls
+
+
+
+      # # ## Due to proxy / internal network issue at FM labs we need to comment it till FM AF moves to K8S
+      # - name: Docker proxy configuration
+      #   blockinfile:
+      #     path: /etc/systemd/system/docker.service.d/proxy.conf
+      #     create: yes
+      #     block: |
+      #             [Service]
+      #             Environment="HTTP_PROXY=http://proxy-example.com:912"
+      #             Environment="HTTPS_PROXY=http://proxy-example.com:912"
+      #             Environment="NO_PROXY=127.0.0.1, example.com,.example.com,10.0.0.0/8,192.168.0.0/16,localhost,.local,127.0.0.0/8,134.134.0.0/16"
+
+
+
+
+
+

@@ -218,6 +218,9 @@ Mkfile.old
 /python/spider-scrapy/tutorial/output/
 /python/spider-scrapy/non_pipeline/output/
 
+/python/python-egg/bee-egg/bee.egg-info/
+/python/python-egg/bee-egg/dist/
+
 ## c
 /c/gdb/out
 /c/gdb/out*

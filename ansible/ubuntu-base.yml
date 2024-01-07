@@ -1,0 +1,25 @@
+---
+  - hosts: all
+
+    vars:
+      - ansible_python_interpreter: /usr/bin/python3
+
+    environment:
+      http_proxy: "http://proxy.example.com:912"
+      https_proxy: "http://proxy.example.com:912"
+      no_proxy: "127.0.0.1, example.com,.example.com,10.0.0.0/8,192.168.0.0/16,localhost,.local,127.0.0.0/8,134.134.0.0/16"
+
+    tasks:
+      - name: "apt install"
+        become: yes
+        apt:
+          name: [
+          'expect',
+          'tmux'
+          ]
+          state: present
+          update_cache: yes
+          force_apt_get: yes
+
+
+
