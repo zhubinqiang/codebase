@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 
 // https://puppeteer.bootcss.com/
 
