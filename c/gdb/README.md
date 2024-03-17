@@ -24,6 +24,8 @@ b fn1 if a＞b：条件断点设置
 b 17 if s != 0: 当s!=0时，设置断点
 break func（break缩写为b）：在函数func()的入口处设置断点，如：break cb_button
 info b (info breakpoints) ：显示当前程序的断点设置情况
+info threads: 查看当前所有线程
+thread <LWP ID>: 切换到指定的线程 (LWP ID 是第一列那个)
 delete 断点号n(delete简写 d)：删除第n个断点
 disable 断点号n：暂停第n个断点
 enable 断点号n：开启第n个断点
