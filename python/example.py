@@ -139,13 +139,34 @@ def handle_closure():
     trigger_event("world")
 
 
+## refer to https://blog.51cto.com/u_16213397/7396986
+class Student:
+    def __init__(self, name, age, score):
+        self.name = name
+        self.age = age
+        self.score = score
+
+def sorted_objects():
+    students = [
+            Student('Alice', 18, 90),
+            Student('Bob', 20, 80),
+            Student('Charlie', 19, 95),
+            ]
+
+    sorted_students = sorted(students, key=lambda x: x.score, reverse=True)
+
+    for student in sorted_students:
+        print(student.name, student.age, student.score)
+
+
 def main():
     # handle_yield()
     # handle_iterator()
     # test_decorator('Jerry', grades={'Math': 99, 'English': 100, 'Chinese': 100})
     # handle_closure()
     # handle_list()
-    handle_classmethod()
+    # handle_classmethod()
+	sorted_objects()
 
 if __name__ == '__main__':
     main()
