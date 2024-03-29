@@ -159,6 +159,17 @@ def sorted_objects():
         print(student.name, student.age, student.score)
 
 
+class Print:
+    def __init__(self, _print):
+        self.print(_print)
+
+    @staticmethod
+    def print(_print):
+        print(_print)
+
+def my_print():
+    Print("=====================")
+
 def main():
     # handle_yield()
     # handle_iterator()
@@ -166,7 +177,8 @@ def main():
     # handle_closure()
     # handle_list()
     # handle_classmethod()
-	sorted_objects()
+    sorted_objects()
+    my_print()
 
 if __name__ == '__main__':
     main()
