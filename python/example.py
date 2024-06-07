@@ -170,6 +170,17 @@ class Print:
 def my_print():
     Print("=====================")
 
+## finally 代码块在任何情况下都会执行
+def try_finally():
+    try:
+        print("try block")
+        return "1234"
+    except Exception as e:
+        raise e
+    finally:
+        print("finally block")
+
+
 def main():
     # handle_yield()
     # handle_iterator()
@@ -177,8 +188,9 @@ def main():
     # handle_closure()
     # handle_list()
     # handle_classmethod()
-    sorted_objects()
-    my_print()
+    # sorted_objects()
+    # my_print()
+    print(try_finally())
 
 if __name__ == '__main__':
     main()
