@@ -79,6 +79,7 @@ def handle_yield():
 ## *args 接收并处理所有传递进来的位置参数
 ## **kwargs 接收并处理所有传递进来的关键字参数。
 ## args: ('Jerry',), kwargs: {'grades': {'Math': 99, 'English': 100, 'Chinese': 100}}
+## a_decorator函数是一个装饰器，它接收一个函数作为参数，并返回一个新的函数 wrapper，这个 wrapper函数在调用被装饰的函数前后添加了一些额外的行为。
 def a_decorator(func):
     def wrapper(*args, **kwargs):
         print("start a_decorator")
