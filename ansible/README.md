@@ -34,6 +34,9 @@ ansible one -m fetch -a 'src=/tmp/a.txt dest=/dev/shm/from-remote.txt flat=yes'
 
 ## playbook
 ansible-playbook addition.yml -vv
+
+## output as yaml format
+ANSIBLE_STDOUT_CALLBACK=yaml ansible-playbook addition.yml -vv
 ```
 
 addition.yml
